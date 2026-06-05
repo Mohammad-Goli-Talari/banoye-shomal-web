@@ -1,7 +1,7 @@
 // src/store/slices/cart/types.ts
 
 export interface CartItem {
-    id: number;
+    id: string;
 
     title: string;
 

@@ -1,7 +1,7 @@
 // src/features/products/types/product.ts
 
 export type Product = {
-    id: number;
+    id: string;
 
     title: string;
     
