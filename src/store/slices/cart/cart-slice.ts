@@ -36,7 +36,7 @@ const cartSlice = createSlice({
 
         removeFromCart(
             state,
-            action: PayloadAction<string>
+            action: PayloadAction<number>
         ) {
             state.items = state.items.filter(
                 (item) => item.id !== action.payload
@@ -45,7 +45,7 @@ const cartSlice = createSlice({
 
         increaseQuantity(
             state,
-            action: PayloadAction<string>
+            action: PayloadAction<number>
         ) {
             const item = state.items.find(
                 (item) => item.id === action.payload
@@ -58,7 +58,7 @@ const cartSlice = createSlice({
 
         decreaseQuantity(
             state,
-            action: PayloadAction<string>
+            action: PayloadAction<number>
         ) {
             const item = state.items.find(
                 (item) => item.id === action.payload
