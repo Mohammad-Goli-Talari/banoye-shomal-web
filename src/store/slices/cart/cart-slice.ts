@@ -1,4 +1,4 @@
-// src/store/auth/cart-slice.ts
+// src/store/slices/cart/cart-slice.ts
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 

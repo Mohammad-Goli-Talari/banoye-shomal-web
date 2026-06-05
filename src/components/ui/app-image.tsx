@@ -2,24 +2,18 @@
 
 import Image, { ImageProps } from "next/image";
 
-import { cn } from "@/lib/cn";
-
 type AppImageProps = ImageProps & {
-    className?: string;
+    fallbackSrc?: string;
 };
 
 export function AppImage({
-    className,
     alt,
+    fallbackSrc = "/images/placeholder.webp",
     ...props
 }: AppImageProps) {
     return (
         <Image
             alt={alt}
-            className={cn(
-                "object-cover",
-                className
-            )}
             {...props}
         />
     );

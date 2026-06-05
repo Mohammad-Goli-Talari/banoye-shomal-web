@@ -1,4 +1,4 @@
-// src/store/auth/ui-slice.ts
+// src/store/slices/ui/ui-slice.ts
 
 import { createSlice } from "@reduxjs/toolkit";
 

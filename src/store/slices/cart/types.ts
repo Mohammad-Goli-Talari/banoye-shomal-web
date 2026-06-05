@@ -1,4 +1,4 @@
-// src/store/cart/types.ts
+// src/store/slices/cart/types.ts
 
 export interface CartItem {
     id: string;

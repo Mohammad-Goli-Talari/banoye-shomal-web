@@ -1,7 +1,7 @@
 // src/features/products/types/product.ts
 
-export interface Product {
-    id: string;
+export type Product = {
+    id: number;
 
     title: string;
     
@@ -12,4 +12,14 @@ export interface Product {
     slug: string;
 
     isAvailable: boolean;
-}
+
+    shortDescription: string;
+
+    description: string;
+
+    ingredients: string[];
+
+    category: string;
+
+    weight?: string;
+};

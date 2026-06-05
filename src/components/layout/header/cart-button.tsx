@@ -7,13 +7,15 @@ import { ShoppingCart } from "lucide-react";
 import { useAppSelector } from "@/store/hooks";
 import { selectCartCount } from "@/store/slices/cart/selectors";
 
+import Link from "next/link";
+
 export function CartButton() {
     const cartItemsCount = useAppSelector(selectCartCount);
 
     return (
-        <button
+        <Link
+            href="/cart"
             className="relative flex h-11 w-11 items-center justify-center rounded-full border transition hover:bg-secondary"
-            aria-label="سبد خرید"
         >
             <ShoppingCart className="h-5 w-5" />
             { cartItemsCount > 0 && (
@@ -21,6 +23,6 @@ export function CartButton() {
                     {cartItemsCount}
                 </span>
             )}                
-        </button>
+        </Link>
     );
 }

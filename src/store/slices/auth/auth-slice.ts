@@ -1,2 +1,2 @@
-// src/store/auth/auth-slice.ts
+// src/store/slices/auth/auth-slice.ts
 
