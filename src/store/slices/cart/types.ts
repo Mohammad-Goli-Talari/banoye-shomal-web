@@ -9,5 +9,5 @@ export interface CartItem {
 
     image: string;
 
-    quantity: number
+    quantity: number;
 }

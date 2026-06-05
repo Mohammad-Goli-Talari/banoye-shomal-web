@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { addToCart } from "@/store/slices/cart/cart-slice";
 import { useAppDispatch } from "@/store/hooks";
 
-import { Product } from "@/features/products/types/product";
+import { Product, ProductCardItem } from "@/features/products/types/product";
 
 type Props = {
-    product: Product;
+    product: ProductCardItem;
 };
 
 export function AddToCartButton({ product }: Props) {

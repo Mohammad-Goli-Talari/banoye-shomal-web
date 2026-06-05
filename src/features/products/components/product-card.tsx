@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 
-import { Product } from "../types/product";
+import { Product, ProductCardItem } from "../types/product";
 
 import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 
 import { formatPrice } from "@/lib/format-price";
 
 type Props = {
-    product: Product;
+    product: ProductCardItem;
 };
 
 export function ProductCard({ product, }: Props) {

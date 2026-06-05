@@ -23,3 +23,8 @@ export type Product = {
 
     weight?: string;
 };
+
+export type ProductCardItem = Pick<
+  Product,
+  "id" | "title" | "price" | "image" | "slug" | "isAvailable"
+>;
