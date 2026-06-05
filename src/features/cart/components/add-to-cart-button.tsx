@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { addToCart } from "@/store/slices/cart/cart-slice";
 import { useAppDispatch } from "@/store/hooks";
 
-import { Product, ProductCardItem } from "@/features/products/types/product";
+import { ProductCardItem } from "@/features/products/types/product";
 
 type Props = {
     product: ProductCardItem;

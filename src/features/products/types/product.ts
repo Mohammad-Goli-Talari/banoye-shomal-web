@@ -28,3 +28,8 @@ export type ProductCardItem = Pick<
   Product,
   "id" | "title" | "price" | "image" | "slug" | "isAvailable"
 >;
+
+export type CartProduct = Pick<
+    Product,
+    "id" | "title" | "price" | "image"
+>;

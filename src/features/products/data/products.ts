@@ -5,30 +5,114 @@ import { Product } from "../types/product";
 export const products: Product[] = [
     {
         id: "1",
-
-        slug: "zeytoon-parvarde",
-
-        title: "زیتون پرورده",
-
-        price: 250000,
-
-        image: "/images/products/zeytoon.webp",
-
-        shortDescription:
-        "زیتون پرورده اصیل شمال",
-
+        slug: "chicken-zereshk-platter",
+        title: "پکیج زرشک‌پلو با مرغ (کترینگ)",
+        price: 185000,
+        image: "/images/products/zereshk-polo.jpg",
+        shortDescription: "سرو مجلسی زرشک‌پلو با مرغ مخصوص مراسم",
         description:
-        "تهیه شده از زیتون مرغوب، رب انار و سبزیجات معطر محلی",
-
-        ingredients: [
-        "زیتون",
-        "رب انار",
-        "گردو",
-        "سبزی معطر",
-        ],
-
-        category: "ترشیجات",
-
+            "برنج ایرانی درجه یک همراه با مرغ سرخ‌شده، زرشک و خلال پسته، مناسب سفارش‌های سازمانی و مهمانی.",
+        ingredients: ["برنج ایرانی", "مرغ", "زرشک", "زعفران", "کره"],
+        category: "غذای اصلی",
+        isAvailable: true,
+        weight: "1 پرس",
+    },
+    {
+        id: "2",
+        slug: "kebab-koobideh-set",
+        title: "کباب کوبیده کترینگ",
+        price: 210000,
+        image: "/images/products/kebab.jpg",
+        shortDescription: "کباب کوبیده زغالی با برنج",
+        description:
+            "دو سیخ کباب کوبیده به همراه برنج ایرانی، گوجه کبابی و دورچین کامل.",
+        ingredients: ["گوشت گوساله", "پیاز", "برنج", "گوجه", "کره"],
+        category: "غذای اصلی",
+        isAvailable: true,
+        weight: "1 پرس",
+    },
+    {
+        id: "3",
+        slug: "gheymeh-platter",
+        title: "خورشت قیمه نذری",
+        price: 165000,
+        image: "/images/products/gheymeh.jpg",
+        shortDescription: "خورشت قیمه مخصوص مراسم",
+        description:
+            "خورشت قیمه جاافتاده با سیب‌زمینی خلالی و برنج ایرانی، مناسب مراسم و نذری.",
+        ingredients: ["گوشت", "لپه", "سیب‌زمینی", "رب گوجه", "برنج"],
+        category: "خورشت",
+        isAvailable: true,
+        weight: "1 پرس",
+    },
+    {
+        id: "4",
+        slug: "joojeh-kebab-set",
+        title: "جوجه‌کباب زعفرانی",
+        price: 175000,
+        image: "/images/products/joojeh.jpg",
+        shortDescription: "جوجه کباب نرم و زعفرانی",
+        description:
+            "فیله مرغ مزه‌دار شده با زعفران، سرو با برنج و دورچین کامل.",
+        ingredients: ["مرغ", "زعفران", "ماست", "لیمو", "برنج"],
+        category: "غذای اصلی",
+        isAvailable: true,
+        weight: "1 پرس",
+    },
+    {
+        id: "5",
+        slug: "sabzi-polo-mahi",
+        title: "سبزی‌پلو با ماهی",
+        price: 240000,
+        image: "/images/products/fish-rice.jpg",
+        shortDescription: "سبزی‌پلو مجلسی با ماهی سرخ‌شده",
+        description:
+            "برنج سبزی‌دار همراه با ماهی تازه سرخ‌شده مخصوص سفارش‌های رسمی.",
+        ingredients: ["برنج", "سبزی", "ماهی", "سیر", "ادویه"],
+        category: "غذای اصلی",
+        isAvailable: true,
+        weight: "1 پرس",
+    },
+    {
+        id: "6",
+        slug: "vegetarian-platter",
+        title: "پکیج غذای گیاهی",
+        price: 150000,
+        image: "/images/products/vegan.jpg",
+        shortDescription: "غذای سالم و گیاهی",
+        description:
+            "ترکیب برنج، سبزیجات بخارپز و خوراک گیاهی مناسب رژیم.",
+        ingredients: ["برنج", "سبزیجات", "هویج", "کدو", "ادویه"],
+        category: "رژیمی",
+        isAvailable: true,
+        weight: "1 پرس",
+    },
+    {
+        id: "7",
+        slug: "baghali-polo-meat",
+        title: "باقالی‌پلو با گوشت",
+        price: 260000,
+        image: "/images/products/baghali-polo.jpg",
+        shortDescription: "باقالی‌پلو مجلسی با گوشت گوساله",
+        description:
+            "برنج باقالی‌پلو همراه با گوشت گوساله آرام‌پز شده.",
+        ingredients: ["برنج", "باقالی", "گوشت گوساله", "شوید", "کره"],
+        category: "غذای اصلی",
+        isAvailable: true,
+        weight: "1 پرس",
+    },
+    {
+        id: "8",
+        slug: "khoresht-bademjan",
+        title: "خورشت بادمجان",
+        price: 170000,
+        image: "/images/products/bademjan.jpg",
+        shortDescription: "خورشت بادمجان خانگی",
+        description:
+            "خورشت بادمجان جاافتاده با گوشت و گوجه تازه.",
+        ingredients: ["بادمجان", "گوشت", "گوجه", "پیاز", "ادویه"],
+        category: "خورشت",
         isAvailable: false,
+        weight: "1 پرس",
     },
 ];

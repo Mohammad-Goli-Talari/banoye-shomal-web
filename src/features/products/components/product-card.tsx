@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Product, ProductCardItem } from "../types/product";
+import { ProductCardItem } from "../types/product";
 
 import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 
@@ -12,7 +12,7 @@ type Props = {
     product: ProductCardItem;
 };
 
-export function ProductCard({ product, }: Props) {
+export function ProductCard({ product }: Props) {
         
     return (
         <article className="overflow-hidden rounded-3xl border bg-white shadow-sm transition hover:shadow-md">

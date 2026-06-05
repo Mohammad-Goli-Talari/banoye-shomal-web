@@ -1,13 +1,7 @@
 // src/store/slices/cart/types.ts
 
-export interface CartItem {
-    id: string;
+import { CartProduct } from "@/features/products/types/product";
 
-    title: string;
-
-    price: number;
-
-    image: string;
-
+export type CartItem = CartProduct & {
     quantity: number;
-}
+};

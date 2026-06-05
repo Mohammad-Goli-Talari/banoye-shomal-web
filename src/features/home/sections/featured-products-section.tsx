@@ -5,43 +5,7 @@ import { Section } from "@/components/ui/section";
 
 import { ProductCard } from "@/features/products/components/product-card";
 
-const products = [
-  {
-    id: "1",
-    title: "ترشی سیر",
-    price: 250000,
-    image: "",
-    slug: "torshi-sir",
-    isAvailable: true,
-  },
-
-  {
-    id: "2",
-    title: "زیتون پرورده",
-    price: 180000,
-    image: "",
-    slug: "zeytoon-parvardeh",
-    isAvailable: true,
-  },
-
-  {
-    id: "3",
-    title: "مربای بهارنارنج",
-    price: 220000,
-    image: "",
-    slug: "moraba-baharnarenj",
-    isAvailable: true,
-  },
-
-  {
-    id: "4",
-    title: "شیرینی محلی",
-    price: 190000,
-    image: "",
-    slug: "shirini-mahali",
-    isAvailable: true,
-  },
-];
+import { products } from "@/features/products/data/products";
 
 export function FeaturedProductsSection() {
     return (
