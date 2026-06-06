@@ -8,6 +8,7 @@ import storage from "redux-persist/lib/storage";
 
 import uiReducer from "./slices/ui/ui-slice";
 import cartReducer from "./slices/cart/cart-slice";
+import authReducer from "./slices/auth/auth-slice";
 
 const persistConfig = {
    key: "root",
@@ -17,7 +18,10 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
    ui: uiReducer,
+   
    cart: cartReducer,
+
+   auth: authReducer,
 });
 
 const persistedReducer = persistReducer(
@@ -30,11 +34,18 @@ export const store = configureStore({
 
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
-         serializableCheck: false,
+         serializableCheck: {
+            ignoredActions: [
+               "persist/PERSIST",
+               "persist/REHYDRATE",
+            ],
+         },
       }),
 });
 
 export const persistor = persistStore(store);
+
+export type AppStore = typeof store;
 
 export type RootState = ReturnType<typeof store.getState>;
 
