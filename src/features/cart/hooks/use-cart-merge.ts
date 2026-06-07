@@ -4,7 +4,7 @@
 
 import { useAppDispatch } from "@/store/hooks";
 
-import { mergeCart } from "@/store/slices/cart/cart-slice";
+import { clearCart, mergeCart } from "@/store/slices/cart/cart-slice";
 
 import { cartService } from "../services/cart-service";
 
@@ -19,6 +19,8 @@ export function useCartMerge() {
         guestItems: CartItem[]
     ) => {
         const mergedCart = await cartService.mergeCart(guestItems);
+
+        dispatch(clearCart());
 
         dispatch(
             mergeCart(

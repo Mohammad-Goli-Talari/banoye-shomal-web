@@ -16,11 +16,18 @@ import { setUser } from "@/store/slices/auth/auth-slice";
 
 import { setTokens } from "@/lib/utils/token-storage";
 
+import { useCart } from "@/features/cart/hooks/use-cart";
+
+import { useCartMerge } from "@/features/cart/hooks/use-cart-merge";
 
 export function useLogin() {
     const router = useRouter();
 
     const dispatch = useAppDispatch();
+
+    const { items } = useCart();
+
+    const { merge } = useCartMerge();
 
     return useMutation<
         AuthResponse,
@@ -31,7 +38,7 @@ export function useLogin() {
             data: LoginRequest
         ) => authService.login(data),
 
-        onSuccess: (data) => {
+        onSuccess: async (data) => {
 
             dispatch(
                 setUser(data.user)
@@ -41,6 +48,10 @@ export function useLogin() {
                 data.accessToken,
                 data.refreshToken
             );
+
+            if (items.length > 0) {
+                await merge(items);
+            }
 
             router.push("/");
         },

@@ -12,3 +12,8 @@ export function setTokens(
         "refreshToken", refreshToken
     );
 }
+
+export function removeTokens() {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+}
