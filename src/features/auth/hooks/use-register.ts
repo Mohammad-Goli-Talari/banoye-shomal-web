@@ -1,25 +1,30 @@
 // src/features/auth/hooks/use-register.ts
 
 "use client";
+import { useMutation } from "@tanstack/react-query";
 
- import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
- import { useRouter } from "next/navigation";
+import { authService } from "../services/auth-service";
 
- import { authService } from "../services/auth-service";
+import { AuthResponse, RegisterRequest } from "../types/auth";
 
- import { RegisterRequest } from "../types/auth";
+import { useAppDispatch } from "@/store/hooks";
 
- import { useAppDispatch } from "@/store/hooks";
+import { setUser } from "@/store/slices/auth/auth-slice";
 
- import { setUser } from "@/store/slices/auth/auth-slice";
+import { setTokens } from "@/lib/utils/token-storage";
 
  export function useRegister(){
     const router = useRouter();
 
     const dispatch = useAppDispatch();
     
-    return useMutation({
+    return useMutation<
+        AuthResponse,
+        Error,
+        RegisterRequest
+    >({
         mutationFn: (
             data: RegisterRequest
         ) => authService.register(data),
@@ -30,15 +35,12 @@
                 setUser(data.user)
             );
 
-            localStorage.setItem(
-                "accessToken", data.accessToken
-            );
-
-            localStorage.setItem(
-                "refreshToken", data.refreshToken
+            setTokens(
+                data.accessToken,
+                data.refreshToken
             );
 
             router.push("/");
         },
     });
- }
+}

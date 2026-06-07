@@ -121,8 +121,8 @@ export function LoginForm() {
                 }
             >
                 {loginMutation.isPending
-                    ? "در حال ورود..."
-                    : "ورود"}
+                ? "در حال ورود..."
+                : "ورود"}
             </Button>
 
             <p className="text-center text-sm text-muted-foreground">

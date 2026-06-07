@@ -5,3 +5,7 @@ import { CartProduct } from "@/features/products/types/product";
 export type CartItem = CartProduct & {
     quantity: number;
 };
+
+export type CartState = {
+    items: CartItem[];
+}

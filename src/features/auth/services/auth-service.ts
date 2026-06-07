@@ -2,14 +2,14 @@
 
 import { authApi } from "../api/auth-api";
 
-import { LoginRequest, RegisterRequest } from "../types/auth";
+import { LoginRequest, RegisterRequest, AuthResponse } from "../types/auth";
 
 export const authService = {
-    login(data: LoginRequest) {
+    login(data: LoginRequest): Promise<AuthResponse> {
         return authApi.login(data);
     },
 
-    async register(data: RegisterRequest) {
+    register(data: RegisterRequest): Promise<AuthResponse> {
         return authApi.register(data);
     },
 };

@@ -8,18 +8,25 @@ import { useRouter } from "next/navigation";
 
 import { authService } from "../services/auth-service";
 
-import { LoginRequest } from "../types/auth";
+import { AuthResponse, LoginRequest } from "../types/auth";
 
 import { useAppDispatch } from "@/store/hooks";
 
 import { setUser } from "@/store/slices/auth/auth-slice";
+
+import { setTokens } from "@/lib/utils/token-storage";
+
 
 export function useLogin() {
     const router = useRouter();
 
     const dispatch = useAppDispatch();
 
-    return useMutation({
+    return useMutation<
+        AuthResponse,
+        Error,
+        LoginRequest
+    >({
         mutationFn: (
             data: LoginRequest
         ) => authService.login(data),
@@ -30,12 +37,9 @@ export function useLogin() {
                 setUser(data.user)
             );
 
-            localStorage.setItem(
-                "accessToken", data.accessToken
-            );
-
-            localStorage.setItem(
-                "refreshToken", data.refreshToken
+            setTokens(
+                data.accessToken,
+                data.refreshToken
             );
 
             router.push("/");

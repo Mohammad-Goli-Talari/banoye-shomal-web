@@ -2,11 +2,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { CartItem } from "./types";
-
-interface CartState {
-    items: CartItem[];
-}
+import { CartItem, CartState } from "./types";
 
 const initialState: CartState = {
     items: [],
@@ -64,14 +60,31 @@ const cartSlice = createSlice({
                 (item) => item.id === action.payload
             );
 
-            if (!item) return
+            if (!item) return;
 
             if (item.quantity > 1) {
                 item.quantity -= 1;
             }
         },
         clearCart(state) {
-                state.items = [];
+            state.items = [];
+        },
+        mergeCart(
+            state,
+            action: PayloadAction<CartItem[]>
+        ) {
+
+            action.payload.forEach((serverItem) => {
+                const existingItem = state.items.find(
+                    item => item.id === serverItem.id
+                );
+
+                if (existingItem) {
+                    existingItem.quantity += serverItem.quantity;
+                } else {
+                    state.items.push(serverItem);
+                }
+            });
         },
     },
 });
@@ -81,6 +94,8 @@ export const {
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
+    clearCart,
+    mergeCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

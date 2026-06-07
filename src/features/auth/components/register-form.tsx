@@ -38,7 +38,7 @@ export function RegisterForm() {
     const onSubmit = async (
         data: RegisterSchema
     ) => { 
-        registerMutation.mutateAsync(data);
+        await registerMutation.mutateAsync(data);
     };
 
     return (
@@ -61,93 +61,93 @@ export function RegisterForm() {
 
             <div>
                 <label
-                htmlFor="firstName"
-                className="mb-2 block text-sm font-medium"
+                    htmlFor="firstName"
+                    className="mb-2 block text-sm font-medium"
                 >
-                نام
+                    نام
                 </label>
 
                 <Input
-                id="firstName"
-                type="text"
-                placeholder="محمد"
-                autoComplete="given-name"
-                {...register("firstName")}
+                    id="firstName"
+                    type="text"
+                    placeholder="محمد"
+                    autoComplete="given-name"
+                    {...register("firstName")}
                 />
 
                 {errors.firstName && (
-                <p className="mt-1 text-sm text-red-500">
-                    {errors.firstName.message}
-                </p>
+                    <p className="mt-1 text-sm text-red-500">
+                        {errors.firstName.message}
+                    </p>
                 )}
             </div>
 
             <div>
                 <label
-                htmlFor="lastName"
-                className="mb-2 block text-sm font-medium"
+                    htmlFor="lastName"
+                    className="mb-2 block text-sm font-medium"
                 >
-                نام خانوادگی
+                    نام خانوادگی
                 </label>
 
                 <Input
-                id="lastName"
-                type="text"
-                placeholder="گلی تالاری"
-                autoComplete="family-name"
-                {...register("lastName")}
+                    id="lastName"
+                    type="text"
+                    placeholder="گلی تالاری"
+                    autoComplete="family-name"
+                    {...register("lastName")}
                 />
 
                 {errors.lastName && (
-                <p className="mt-1 text-sm text-red-500">
-                    {errors.lastName.message}
-                </p>
+                    <p className="mt-1 text-sm text-red-500">
+                        {errors.lastName.message}
+                    </p>
                 )}
             </div>
 
             <div>
                 <label
-                htmlFor="phone"
-                className="mb-2 block text-sm font-medium"
+                    htmlFor="phone"
+                    className="mb-2 block text-sm font-medium"
                 >
-                شماره موبایل
+                    شماره موبایل
                 </label>
 
                 <Input
-                id="phone"
-                type="tel"
-                placeholder="09119561327"
-                autoComplete="tel"
-                {...register("phone")}
+                    id="phone"
+                    type="tel"
+                    placeholder="09119561327"
+                    autoComplete="tel"
+                    {...register("phone")}
                 />
 
                 {errors.phone && (
-                <p className="mt-1 text-sm text-red-500">
-                    {errors.phone.message}
-                </p>
+                    <p className="mt-1 text-sm text-red-500">
+                        {errors.phone.message}
+                    </p>
                 )}
             </div>
 
             <div>
                 <label
-                htmlFor="password"
-                className="mb-2 block text-sm font-medium"
+                    htmlFor="password"
+                    className="mb-2 block text-sm font-medium"
                 >
-                رمز عبور
+                    رمز عبور
                 </label>
 
                 <Input
-                id="password"
-                type="password"
-                placeholder="حداقل ۸ کاراکتر"
-                autoComplete="new-password"
-                {...register("password")}
+                    id="password"
+                    type="password"
+                    placeholder="حداقل ۸ کاراکتر"
+                    autoComplete="new-password"
+                    {...register("password")}
                 />
 
                 {errors.password && (
-                <p className="mt-1 text-sm text-red-500">
-                    {errors.password.message}
-                </p>
+                    <p className="mt-1 text-sm text-red-500">
+                        {errors.password.message}
+                    </p>
                 )}
             </div>
 
