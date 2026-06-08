@@ -6,5 +6,6 @@ export const QUERY_KEYS = {
     COURSES: ["courses"],
     COURSE: ["course"],
     ORDERS: ["orders"],
-    USER: ["user"]
+    USER: ["user"],
+    PROFILE: ["profile"]
 } as const;

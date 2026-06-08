@@ -8,16 +8,12 @@ type AuthState = {
     user: User | null;
 
     isAuthenticated: boolean;
-
-    isLoading: boolean;
 };
 
 const initialState: AuthState = {
     user: null,
 
     isAuthenticated: false,
-
-    isLoading: false,
 };
 
 const authSlice = createSlice({

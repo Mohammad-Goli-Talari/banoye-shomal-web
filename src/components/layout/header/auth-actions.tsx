@@ -6,21 +6,21 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button"
 
+import { useAuth } from "@/features/auth/hooks/use-auth";
+
+import { UserMenu } from "./user-menu";
+
 export function AuthActions() {
-    const isAuthenticated = false;
+    const { isAuthenticated } = useAuth();
 
     if (isAuthenticated) {
-        return (
-            <Button>
-                پروفایل
-            </Button>
-        );
+        return <UserMenu />;
     }
 
     return (
         <div className="flex items-center gap-2">
             <Button
-                variant="ghost"
+                variant="outline"
                 asChild
             >
                 <Link href="/login">

@@ -1,4 +1,4 @@
-// // src/store/slices/auth/selector.ts
+// // src/store/slices/auth/selectors.ts
 
 import { RootState } from "@/store";
 
