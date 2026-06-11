@@ -1,12 +1,14 @@
-// src/features/checkout/api/checkout-service.ts
+// src/features/checkout/services/checkout-service.ts
 
 import { checkoutApi } from "../api/checkout-api";
 
+import { CreateOrderResponse, CreateOrderRequest } from "../types/checkout";    
+
 export const checkoutService = {
     async createOrder(
-        addressId: string
-    ) {
-        const response = await checkoutApi.createOrder(addressId);
+        data: CreateOrderRequest
+    ): Promise<CreateOrderResponse> {
+        const response = await checkoutApi.createOrder(data);
 
         return response.data;
     },

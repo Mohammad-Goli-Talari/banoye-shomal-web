@@ -2,17 +2,15 @@
 
 import { axiosInstance } from "@/services/axios";
 
-import { CreateOrderResponse } from "../types/checkout";
+import { CreateOrderResponse, CreateOrderRequest } from "../types/checkout";
 
 export const checkoutApi = {
     createOrder(
-        addressId: string
+        data: CreateOrderRequest
     ) {
         return axiosInstance.post<CreateOrderResponse>(
-            "/checkout",
-            {
-                addressId,
-            }
+            "/orders", 
+            data
         );
     },
 };

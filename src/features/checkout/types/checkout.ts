@@ -18,4 +18,16 @@ export type CheckoutSummary = {
 
 export type CreateOrderResponse = {
     orderId: string;
+
+    paymentUrl: string;
+};
+
+export type CreateOrderRequest = {
+    addressId: string;
+
+    items: {
+        productId: string;
+
+        quantity: number;
+    }[];
 };
