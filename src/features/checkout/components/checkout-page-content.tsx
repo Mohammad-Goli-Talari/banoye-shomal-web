@@ -49,7 +49,14 @@ export function CheckoutPageContent() {
             return;
         }
 
-        const result = await createOrderMutation.mutateAsync(selectedAddressId);
+        const result = await createOrderMutation.mutateAsync({
+            addressId: selectedAddressId,
+
+            items: cartItems.map((item) => ({
+                productId: item.id,
+                quantity: item.quantity,
+            })),
+        });
 
         router.push(`/payment/${result.orderId}`);
     };

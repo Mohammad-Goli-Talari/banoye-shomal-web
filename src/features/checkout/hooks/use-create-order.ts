@@ -9,10 +9,5 @@ import { checkoutService } from "../services/checkout-service";
 export function useCreateOrder() {
     return useMutation({
         mutationFn:checkoutService.createOrder,
-
-        onSuccess: (data) => {
-            window.location.href =
-                data.paymentUrl;
-        },
     });
 }
