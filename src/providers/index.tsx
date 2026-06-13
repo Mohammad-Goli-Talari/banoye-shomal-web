@@ -4,6 +4,7 @@
 
 import { ReduxProvider } from "./redux-provider";
 import { QueryProvider } from "./query-provider";
+import { ToastProvider } from "./toast-provider";
 
 type Props = {
     children: React.ReactNode;
@@ -14,6 +15,7 @@ export function Providers({ children }: Props) {
         <ReduxProvider>
             <QueryProvider>
                 {children}
+                <ToastProvider />
             </QueryProvider>
         </ReduxProvider>
     );

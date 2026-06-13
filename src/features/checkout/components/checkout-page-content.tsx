@@ -58,7 +58,7 @@ export function CheckoutPageContent() {
             })),
         });
 
-        router.push(`/payment/${result.orderId}`);
+        router.push(`checkout/payment/${result.orderId}`);
     };
 
     if (isLoading) {

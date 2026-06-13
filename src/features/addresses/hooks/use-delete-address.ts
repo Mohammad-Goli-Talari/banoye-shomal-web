@@ -6,6 +6,8 @@ import { useMutation } from "@tanstack/react-query";
 
 import { addressesService } from "../services/addresses-service";
 
+import { appToast } from "@/lib/toast";
+
 export function useDeleteAddress() {
     const queryClient = useQueryClient();
 
@@ -16,6 +18,16 @@ export function useDeleteAddress() {
             queryClient.invalidateQueries({
                 queryKey: ["addresses"],
             });
+
+            appToast.success(
+                "آدرس حذف شد"
+            );
         },
+        onError: () => {
+            appToast.error(
+                "حذف آدرس ناموفق بود"
+            );
+        },
+
     });
 }

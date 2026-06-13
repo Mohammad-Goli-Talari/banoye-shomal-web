@@ -15,6 +15,8 @@ import { setUser } from "@/store/slices/auth/auth-slice";
 
 import { setTokens } from "@/lib/utils/token-storage";
 
+import { appToast } from "@/lib/toast";
+
  export function useRegister(){
     const router = useRouter();
 
@@ -40,7 +42,17 @@ import { setTokens } from "@/lib/utils/token-storage";
                 data.refreshToken
             );
 
+            appToast.success(
+                "ثبت نام با موفقیت انجام شد"
+            );
+
             router.push("/");
         },
+
+        onError: () => {
+            appToast.error(
+                "ثبت‌نام ناموفق بود"
+            );
+        }
     });
 }

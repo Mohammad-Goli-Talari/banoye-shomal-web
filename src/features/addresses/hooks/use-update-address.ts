@@ -8,6 +8,8 @@ import { addressesService } from "../services/addresses-service";
 
 import { UpdateAddressRequest } from "../types/address";
 
+import { appToast } from "@/lib/toast";
+
 export function useUpdateAddress() {
     const queryClient = useQueryClient();
 
@@ -26,6 +28,16 @@ export function useUpdateAddress() {
             queryClient.invalidateQueries({
                 queryKey: ["addresses"],
             });
+
+            appToast.success(
+                "آدرس بروزرسانی شد"
+            );
+        },
+
+        onError: () => {
+            appToast.error(
+                "خطا در بروزرسانی آدرس"
+            );
         },
     });
 }

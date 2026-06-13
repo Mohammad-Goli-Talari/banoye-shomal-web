@@ -20,6 +20,8 @@ import { useCart } from "@/features/cart/hooks/use-cart";
 
 import { useCartMerge } from "@/features/cart/hooks/use-cart-merge";
 
+import { appToast } from "@/lib/toast";
+
 export function useLogin() {
     const router = useRouter();
 
@@ -53,7 +55,17 @@ export function useLogin() {
                 await merge(items);
             }
 
+            appToast.success(
+                "ورود با موفقیت انجام شد"
+            );
+
             router.push("/");
         },
+        
+        onError: () => {
+            appToast.error(
+                "خطا در ورود"
+            );
+        }
     });
 }
