@@ -2,5 +2,9 @@
 
 export type ProductSearchParams = {
     search?: string;
-};
 
+    page?: number;
+
+    limit?: number;
+};
+    

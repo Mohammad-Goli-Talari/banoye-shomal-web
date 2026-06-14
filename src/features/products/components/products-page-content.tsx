@@ -2,15 +2,17 @@
 
 "use client";
 
-import { useRouter } from "next/navigation";
-
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { useProducts } from "../hooks/use-products";
 
 import { ProductCard } from "./product-card";
 
 import { ProductSearch } from "./product-search";
+
+import { ProductsPagination } from "./products-pagination";
+
+import { useDebounce } from "@/hooks/use-debounce";
 
 export function ProductsPageContent() {
 
@@ -19,6 +21,12 @@ export function ProductsPageContent() {
     const searchParams = useSearchParams();
 
     const search = searchParams.get("search") ?? "";
+
+    const debouncedSearch = useDebounce(search, 500);
+
+    const page = Number(
+        searchParams.get("page") ?? 1
+    );
 
     const handleSearchChange = (
         value: string
@@ -44,16 +52,28 @@ export function ProductsPageContent() {
 
         }
 
+        params.set("page", "1");
+
         router.push(
             `/products?${params.toString()}`
         );
+    };
+
+    const handlePageChange = (page: number) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        params.set("page", page.toString());
+
+        router.push(`/products?${params.toString()}`);
     };
 
     const {
         data: products = [],
         isLoading,
     } = useProducts({
-        search,
+        search: debouncedSearch,
+        page,
+        limit: 12,
     });
 
     return (
@@ -96,6 +116,11 @@ export function ProductsPageContent() {
                 </div>
             )}
 
+            <ProductsPagination
+                page={page}
+                onPageChange={handlePageChange}                    
+            />
+
         </div>
     );
-}
+};
