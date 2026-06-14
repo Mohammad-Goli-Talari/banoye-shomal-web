@@ -12,4 +12,8 @@ export const authService = {
     register(data: RegisterRequest): Promise<AuthResponse> {
         return authApi.register(data);
     },
+
+    refreshToken(refreshToken: string): Promise<AuthResponse> {
+        return authApi.refreshToken(refreshToken);
+    }, 
 };
