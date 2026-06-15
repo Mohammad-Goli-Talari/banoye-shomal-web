@@ -3,8 +3,8 @@
 import { AppImage } from "@/components/ui/app-image";
 
 type Props = {
-    image: string,
-    title: string,
+    image: string;
+    title: string;
 };
 
 export function ProductGallery({

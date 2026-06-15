@@ -40,6 +40,17 @@ export function ProductsPageContent() {
         searchParams.get("page") ?? 1
     );
 
+    const {
+        data: products = [],
+        isLoading,
+    } = useProducts({
+        search: debouncedSearch,
+        page,
+        limit: 12,
+        category,
+        sort,
+    });
+
     const handleSearchChange = (
         value: string
     ) => {
@@ -78,17 +89,6 @@ export function ProductsPageContent() {
 
         router.push(`/products?${params.toString()}`);
     };
-
-    const {
-        data: products = [],
-        isLoading,
-    } = useProducts({
-        search: debouncedSearch,
-        page,
-        limit: 12,
-        category,
-        sort,
-    });
 
     const handleCategoryChange = (
         value: string
