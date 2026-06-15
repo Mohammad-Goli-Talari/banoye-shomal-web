@@ -14,6 +14,14 @@ import { ProductsPagination } from "./products-pagination";
 
 import { useDebounce } from "@/hooks/use-debounce";
 
+import { ProductsEmpty } from "./products-empty";
+
+import { ProductCardSkeleton } from "./product-card-skeleton";
+
+import { ProductsFilters } from "./products-filters";
+
+import { ProductSort } from "../types/product-search";
+
 export function ProductsPageContent() {
 
     const router = useRouter();
@@ -21,6 +29,10 @@ export function ProductsPageContent() {
     const searchParams = useSearchParams();
 
     const search = searchParams.get("search") ?? "";
+
+    const category = searchParams.get("category") ?? "";
+
+    const sort = (searchParams.get("sort") as ProductSort | null) ?? undefined;
 
     const debouncedSearch = useDebounce(search, 500);
 
@@ -74,7 +86,59 @@ export function ProductsPageContent() {
         search: debouncedSearch,
         page,
         limit: 12,
+        category,
+        sort,
     });
+
+    const handleCategoryChange = (
+        value: string
+    ) => {
+        const params =
+            new URLSearchParams(
+                searchParams.toString()
+            );
+
+        if (value) {
+            params.set(
+                "category",
+                value
+            );
+        } else {
+            params.delete(
+                "category"
+            );
+        }
+
+        params.set("page", "1");
+
+        router.push(
+            `/products?${params}`
+        );
+    };
+
+    const handleSortChange = (
+        value: string
+    ) => {
+        const params =
+            new URLSearchParams(
+                searchParams.toString()
+            );
+
+        if (value) {
+            params.set(
+                "sort",
+                value
+            );
+        } else {
+            params.delete(
+                "sort"
+            );
+        }
+
+        router.push(
+            `/products?${params}`
+        );
+    };
 
     return (
         <div className="space-y-6">
@@ -88,38 +152,35 @@ export function ProductsPageContent() {
                 onChange={handleSearchChange}
             />
 
-            {isLoading && (
-                <p>
-                    در حال دریافت محصولات...
-                </p>
-            )}
+            <ProductsFilters
+                category={category}
+                sort={sort ?? ""}
+                onCategoryChange={handleCategoryChange}
+                onSortChange={handleSortChange}
+            />
 
-            {!isLoading && (
-                <div
-                    className="
-                        grid
-                        gap-6
-                        md:grid-cols-2
-                        lg:grid-cols-3
-                    "
-                >
-
-                    {products.map(
-                        (product) => (
-                            <ProductCard
-                                key={product.id}
-                                product={product}
-                            />
-                        )
-                    )}
-
+            {isLoading ? (
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                        <ProductCardSkeleton key={i} />
+                    ))}
+                </div>
+            ) : products.length === 0 ? (
+                <ProductsEmpty />
+            ) : (
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {products.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
                 </div>
             )}
 
-            <ProductsPagination
-                page={page}
-                onPageChange={handlePageChange}                    
-            />
+            {products.length > 0 && (
+                <ProductsPagination
+                    page={page}
+                    onPageChange={handlePageChange}
+                />
+            )}
 
         </div>
     );
