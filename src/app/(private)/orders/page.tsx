@@ -1,4 +1,4 @@
-// src/app/(profile)/orders/page.tsx
+// src/app/(private)/orders/page.tsx
 
 import { OrdersPageContent } from "@/features/orders/components/orders-page-content";
 
