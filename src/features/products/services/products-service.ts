@@ -22,4 +22,12 @@ export const productsService = {
 
         return response.data;
     },
+
+    async getRelatedProducts(
+        productId: string
+    ) {
+        const response = await productsApi.getRelatedProducts(productId);
+
+        return response.data;
+    },
 };

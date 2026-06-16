@@ -19,4 +19,10 @@ export const productsApi = {
             `/products/${slug}`
         );
     },
+
+    getRelatedProducts(productId: string) {
+        return axiosInstance.get<Product[]>(
+            `/products/${productId}/related`
+        );
+    },
 };

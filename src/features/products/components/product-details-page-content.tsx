@@ -2,8 +2,6 @@
 
 "use client";
 
-import { notFound } from "next/navigation";
-
 import { useProduct } from "../hooks/use-product";
 
 import { ProductGallery } from "./product-gallery";
@@ -11,6 +9,8 @@ import { ProductGallery } from "./product-gallery";
 import { ProductInfo } from "./product-info";
 
 import { IngredientsSection } from "./ingredients-section";
+
+import { RelatedProducts } from "./related-products";
 
 type Props = {
     slug: string;
@@ -34,7 +34,11 @@ export function ProductDetailsPageContent({
     }
 
     if (!product) {
-        notFound();
+        return (
+            <p>
+                محصول پیدا نشد.
+            </p>
+        );
     }
 
     return (
@@ -63,6 +67,10 @@ export function ProductDetailsPageContent({
                 ingredients={
                     product.ingredients
                 }
+            />
+
+            <RelatedProducts
+                productId={product.id}
             />
 
         </div>
