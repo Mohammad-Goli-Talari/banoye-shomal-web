@@ -8,6 +8,8 @@ import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 
 import { formatPrice } from "@/lib/format-price";
 
+import { WishlistButton } from "@/features/wishlist/components/wishlist-button";
+
 type Props = {
     product: ProductCardItem;
 };
@@ -36,6 +38,10 @@ export function ProductCard({ product }: Props) {
                         <span className="font-bold text-primary">
                             {formatPrice(product.price)} تومان
                         </span>
+
+                        <WishlistButton
+                            productId={product.id}
+                        />
 
                     </div>
 

@@ -4,52 +4,62 @@ import { Order } from "../types/order";
 
 import Link from "next/link";
 
+import { ORDER_STATUS_LABELS } from "../constants/order-status";
+
+import { formatPrice } from "@/lib/format-price";
+
 type Props = {
     order: Order;
 };
 
 export function OrderCard({ order, }: Props) {
     return (
-        <div className="rounded-2xl border p-5">
+        <Link
+            href={`/orders/${order.id}`}
+            className="
+                block
+                rounded-2xl
+                border
+                p-5
+                transition
+                hover:shadow-md
+            "
+        >
 
-            <div className="space-y-2">
+            <div className="flex items-center justify-between">
 
-                <p>
+                <span className="font-bold">
                     سفارش #{order.id}
-                </p>
+                </span>
 
-                <p>
-                    وضعیت:
-                    {" "}
-                    {order.status}
-                </p>
+                <span className="text-sm">
+                    {
+                        ORDER_STATUS_LABELS[
+                            order.status
+                        ]
+                    }
+                </span>
 
-                <p>
-                    مبلغ:
-                    {" "}
-                    {order.totalPrice.toLocaleString()}
+            </div>
+
+            <div className="mt-4 flex items-center justify-between">
+
+                <span>
+                    {new Date(
+                        order.createdAt
+                    ).toLocaleDateString("fa-IR")}
+                </span>
+
+                <span className="font-bold text-primary">
+                    {formatPrice(
+                        order.totalPrice
+                    )}
                     {" "}
                     تومان
-                </p>
+                </span>
 
             </div>
 
-            <div className="mt-4">
-
-                <Link
-                    href={`/dashboard/orders/${order.id}`}
-                    className="
-                        inline-flex
-                        text-sm
-                        font-medium
-                        text-primary
-                    "
-                >
-                    مشاهده جزئیات
-                </Link>
-
-            </div>
-
-        </div>
+        </Link>
     );
 }

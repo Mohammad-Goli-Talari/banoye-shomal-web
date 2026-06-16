@@ -1,33 +1,25 @@
 // src/features/orders/components/orders-list.tsx
 
-"use client";
-
-import { useOrders } from "../hooks/use-orders";
+import { Order } from "../types/order";
 
 import { OrderCard } from "./order-card";
 
-export function OrdersList() {
-    const { data, isLoading} = useOrders();
+type Props = {
+    orders: Order[];
+};
 
-    if (isLoading) {
-        return <p>در حال دریافت سفارش‌ها...</p>
-    }
-
-    if (!data?.length) {
-        return (
-            <p>
-                هنوز سفارشی ثبت نشده است.
-            </p>
-        );
-    }
+export function OrdersList({ orders }: Props) {
 
     return (
         <div className="space-y-4">
-            
-            {data.map((order) => (
-                <OrderCard key={order.id} order={order} />
+
+            {orders.map((order) => (
+                <OrderCard
+                    key={order.id}
+                    order={order}
+                />
             ))}
-            
+
         </div>
     );
 }

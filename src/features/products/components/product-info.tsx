@@ -6,6 +6,8 @@ import { AddToCartButton } from "@/features/cart/components/add-to-cart-button";
 
 import { formatPrice } from "@/lib/format-price";
 
+import { WishlistButton } from "@/features/wishlist/components/wishlist-button";
+
 type Props = {
     product: Product;
 };
@@ -19,6 +21,10 @@ export function ProductInfo({
             <h1 className="text-3xl font-bold">
                 {product.title}
             </h1>
+
+            <WishlistButton
+                productId={product.id}
+            />
 
             <p className="text-lg text-gray-600">
                 {product.shortDescription}
