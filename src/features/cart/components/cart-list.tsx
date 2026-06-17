@@ -11,7 +11,7 @@ import { CartItemCard } from "./cart-item-card";
 export function CartList() {
     const items = useAppSelector(selectCartItems);
 
-    if (!items.length) {
+    if (!items || !items.length) {
         return (
             <div className="rounded-2xl border p-8 text-center">
                 سبد شما خالی است

@@ -9,5 +9,7 @@ export const useCategories = () => {
         queryKey: ["categories"],
         
         queryFn: categoriesService.getCategories,
+        
+        select: (data) => data || [],
     });
 };

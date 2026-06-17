@@ -9,6 +9,8 @@ export function useOrders() {
         queryKey: ["orders"],
 
         queryFn: () => ordersService.getOrders(),
+        
+        select: (data) => data || [],
     });
 }
 

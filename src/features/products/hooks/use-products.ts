@@ -7,12 +7,14 @@ import { productsService } from "../services/products-service";
 import { ProductSearchParams } from "../types/product-search";
 
 export function useProducts(
-    params: ProductSearchParams
+    params?: ProductSearchParams
 ) {
     return useQuery({
         queryKey: ["products", params],
 
         queryFn: () =>
-            productsService.getProducts(params),
+            productsService.getProducts(params || {}),
+        
+        select: (data) => data || [],
     });
 }

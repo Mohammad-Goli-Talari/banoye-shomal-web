@@ -9,5 +9,7 @@ export function useAddresses() {
         queryKey: ["addresses"],
 
         queryFn: () => addressesService.getAddresses(),
+        
+        select: (data) => data || [],
     });
 }

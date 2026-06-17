@@ -11,5 +11,7 @@ export function useWishlist() {
         queryKey: ["wishlist"],
 
         queryFn: () => wishlistService.getWishlist(),
+        
+        select: (data) => data || [],
     });
 }

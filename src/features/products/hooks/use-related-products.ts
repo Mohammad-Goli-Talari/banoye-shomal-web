@@ -15,5 +15,7 @@ export function useRelatedProducts(
         queryFn: () => productsService.getRelatedProducts(productId),
 
         enabled: !!productId,
+        
+        select: (data) => data || [],
     });
 }

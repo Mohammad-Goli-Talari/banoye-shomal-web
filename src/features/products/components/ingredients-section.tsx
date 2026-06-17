@@ -5,8 +5,12 @@ type Props = {
 };
 
 export function IngredientsSection({
-    ingredients,
+    ingredients = [],
 }: Props) {
+    if (!ingredients || !ingredients.length) {
+        return null;
+    }
+
     return (
         <section className="mt-12">
 
