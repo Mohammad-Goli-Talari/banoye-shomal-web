@@ -9,11 +9,13 @@ type Props = {
 };
 
 export function OrdersList({ orders = [] }: Props) {
+    
+    const safeOrders = Array.isArray(orders) ? orders : [];
 
     return (
         <div className="space-y-4">
 
-            {orders.map((order) => (
+            {safeOrders.map((order) => (
                 <OrderCard
                     key={order.id}
                     order={order}

@@ -26,8 +26,10 @@ export function ProductsFilters({
 }: Props) {
 
     const {
-        data: categories = [],
+        data: categories,
     } = useCategories();
+    
+    const safeCategories = Array.isArray(categories) ? categories : [];
 
     return (
         <div
@@ -52,7 +54,7 @@ export function ProductsFilters({
                     همه دسته‌ها
                 </option>
 
-                {categories.map((item) => (
+                {safeCategories.map((item) => (
                     <option
                         key={item.id}
                         value={item.slug}

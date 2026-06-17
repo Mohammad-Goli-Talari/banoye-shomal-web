@@ -19,7 +19,9 @@ export function CheckoutAddresses({
     selectedAddressId,
     onSelect,
 }: Props) {
-    if (!addresses?.length) {
+    const safeAddresses = Array.isArray(addresses) ? addresses : [];
+    
+    if (!safeAddresses?.length) {
         return (
             <p>
                 هیچ آدرسی ثبت نشده است.
@@ -34,7 +36,7 @@ export function CheckoutAddresses({
                 انتخاب آدرس
             </h2>
 
-            {addresses.map((address) => {
+            {safeAddresses.map((address) => {
 
                 const isSelected =
                     selectedAddressId ===

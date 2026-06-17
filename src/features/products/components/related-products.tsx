@@ -14,13 +14,15 @@ export function RelatedProducts({
     productId,
 }: Props) {
 
-    const { data = [], isLoading } = useRelatedProducts(productId);
+    const { data, isLoading } = useRelatedProducts(productId);
+    
+    const safeData = Array.isArray(data) ? data : [];
 
     if (isLoading) {
         return null;
     }
 
-    if (data.length === 0) {
+    if (safeData.length === 0) {
         return null;
     }
 
@@ -40,7 +42,7 @@ export function RelatedProducts({
                 "
             >
 
-                {data.map((product) => (
+                {safeData.map((product) => (
                     <ProductCard
                         key={product.id}
                         product={product}

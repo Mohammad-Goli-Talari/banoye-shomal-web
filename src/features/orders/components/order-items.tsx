@@ -9,8 +9,10 @@ type Props = {
 };
 
 export function OrderItems({ items = [] }: Props) {
+    
+    const safeItems = Array.isArray(items) ? items : [];
 
-    if (!items?.length) {
+    if (!safeItems?.length) {
         return (
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold">
@@ -30,7 +32,7 @@ export function OrderItems({ items = [] }: Props) {
                 محصولات سفارش
             </h2>
 
-            {items.map((item) => (
+            {safeItems.map((item) => (
 
                 <div
                     key={item.productId}

@@ -10,6 +10,8 @@ import { dashboardLinks } from "../constants/nav-links";
 
 export function DashboardSidebar() {
     const pathname = usePathname();
+    
+    const safeLinks = Array.isArray(dashboardLinks) ? dashboardLinks : [];
 
     return (
         <aside
@@ -22,7 +24,7 @@ export function DashboardSidebar() {
             <nav>
                 <ul className="space-y-2">
 
-                    {dashboardLinks.map((link) => {
+                    {safeLinks.map((link) => {
 
                         const isActive =
                             pathname === link.href;

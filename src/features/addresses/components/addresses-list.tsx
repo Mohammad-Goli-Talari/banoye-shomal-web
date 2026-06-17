@@ -11,6 +11,8 @@ export function AddressesList() {
         data,
         isLoading,
     } = useAddresses();
+    
+    const safeData = Array.isArray(data) ? data : [];
 
     if (isLoading) {
         return (
@@ -20,7 +22,7 @@ export function AddressesList() {
         );
     }
 
-    if (!data?.length) {
+    if (!safeData?.length) {
         return (
             <p>
                 هنوز آدرسی ثبت نشده است.
@@ -31,7 +33,7 @@ export function AddressesList() {
     return (
         <div className="space-y-4">
 
-            {data.map((address) => (
+            {safeData.map((address) => (
                 <AddressCard
                     key={address.id}
                     address={address}

@@ -41,7 +41,7 @@ export function ProductsPageContent() {
     );
 
     const {
-        data: products = [],
+        data: products,
         isLoading,
     } = useProducts({
         search: debouncedSearch,
@@ -50,6 +50,8 @@ export function ProductsPageContent() {
         category,
         sort,
     });
+    
+    const safeProducts = Array.isArray(products) ? products : [];
 
     const handleSearchChange = (
         value: string
@@ -165,17 +167,17 @@ export function ProductsPageContent() {
                         <ProductCardSkeleton key={i} />
                     ))}
                 </div>
-            ) : products.length === 0 ? (
+            ) : safeProducts.length === 0 ? (
                 <ProductsEmpty />
             ) : (
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {products.map((product) => (
+                    {safeProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </div>
             )}
 
-            {products.length > 0 && (
+            {safeProducts.length > 0 && (
                 <ProductsPagination
                     page={page}
                     onPageChange={handlePageChange}

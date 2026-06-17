@@ -34,8 +34,10 @@ export function CheckoutPageContent() {
     const cartItems = useAppSelector(
         (state) => state.cart?.items ?? []
     );
+    
+    const safeCartItems = Array.isArray(cartItems) ? cartItems : [];
 
-    const itemsPrice = (cartItems ?? []).reduce(
+    const itemsPrice = safeCartItems.reduce(
         (total, item) => total + item.price * item.quantity, 0
     );
 
@@ -52,7 +54,7 @@ export function CheckoutPageContent() {
         const result = await createOrderMutation.mutateAsync({
             addressId: selectedAddressId,
 
-            items: cartItems.map((item) => ({
+            items: safeCartItems.map((item) => ({
                 productId: item.id,
                 quantity: item.quantity,
             })),

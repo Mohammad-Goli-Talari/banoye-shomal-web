@@ -5,10 +5,12 @@ import Link from "next/link"
 import { NAVIGATION } from "@/constants/navigation";
 
 export function DesktopNav() {
+    const safeNavigation = Array.isArray(NAVIGATION) ? NAVIGATION : [];
+    
     return (
         <nav className="hidden lg:block">
             <ul className="flex items-center gap-8">
-                {NAVIGATION.map((item) => (
+                {safeNavigation.map((item) => (
                     <li key={item.href}>
                         <Link
                             href={item.href}

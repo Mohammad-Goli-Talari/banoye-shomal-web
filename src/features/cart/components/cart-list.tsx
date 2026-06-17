@@ -10,8 +10,10 @@ import { CartItemCard } from "./cart-item-card";
 
 export function CartList() {
     const items = useAppSelector(selectCartItems);
+    
+    const safeItems = Array.isArray(items) ? items : [];
 
-    if (!items || !items.length) {
+    if (!safeItems.length) {
         return (
             <div className="rounded-2xl border p-8 text-center">
                 سبد شما خالی است
@@ -22,7 +24,7 @@ export function CartList() {
     return (
         <div>
 
-            {items.map(item => (
+            {safeItems.map(item => (
                 <CartItemCard
                     key={item.id}
                     item={item}

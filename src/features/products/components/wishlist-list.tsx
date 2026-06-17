@@ -7,7 +7,9 @@ import { ProductCard } from "@/features/products/components/product-card";
 
 export function WishlistList() {
 
-    const { data: products = [], isLoading } = useWishlist();
+    const { data: products, isLoading } = useWishlist();
+    
+    const safeProducts = Array.isArray(products) ? products : [];
 
     if (isLoading) {
         return (
@@ -17,7 +19,7 @@ export function WishlistList() {
         );
     }
 
-    if (products.length === 0) {
+    if (safeProducts.length === 0) {
         return (
             <p>
                 هنوز محصولی به علاقه‌مندی‌ها اضافه نشده است.
@@ -35,7 +37,7 @@ export function WishlistList() {
             "
         >
 
-            {products.map((product) => (
+            {safeProducts.map((product) => (
                 <ProductCard
                     key={product.id}
                     product={product}

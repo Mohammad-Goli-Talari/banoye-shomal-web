@@ -10,7 +10,9 @@ import { useProducts } from "@/features/products/hooks/use-products";
 
 export function FeaturedProductsSection() {
 
-    const { data: products = [], isLoading } = useProducts({ limit: 4 });
+    const { data: products, isLoading } = useProducts({ limit: 4 });
+    
+    const safProducts = Array.isArray(products) ? products : [];
         
     return (
         <Section className="">
@@ -27,7 +29,7 @@ export function FeaturedProductsSection() {
                     <p>در حال بارگذاری...</p>
                 ) : (
                     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-                        {products.map((product) => (
+                        {safProducts.map((product) => (
                             <ProductCard
                                 key={product.id}
                                 product={product}

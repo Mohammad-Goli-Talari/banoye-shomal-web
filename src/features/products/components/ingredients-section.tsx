@@ -7,7 +7,9 @@ type Props = {
 export function IngredientsSection({
     ingredients = [],
 }: Props) {
-    if (!ingredients || !ingredients.length) {
+    const safeIngredients = Array.isArray(ingredients) ? ingredients : [];
+    
+    if (!safeIngredients || !safeIngredients.length) {
         return null;
     }
 
@@ -20,7 +22,7 @@ export function IngredientsSection({
 
             <ul className="space-y-2">
 
-                {ingredients.map((ingredient) => (
+                {safeIngredients.map((ingredient) => (
                     <li
                         key={ingredient}
                         className="rounded-xl border p-3"
