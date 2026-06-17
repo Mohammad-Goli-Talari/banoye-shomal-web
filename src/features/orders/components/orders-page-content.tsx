@@ -9,9 +9,7 @@ import { OrdersList } from "./orders-list";
 import { OrdersEmpty } from "./orders-empty";
 
 export function OrdersPageContent() {
-    const { data, isLoading } = useOrders();
-
-    const orders = Array.isArray(data) ? data : [];;
+    const { data: orders = [], isLoading } = useOrders();
 
     if (isLoading) {
         return (

@@ -10,7 +10,7 @@ import { useProducts } from "@/features/products/hooks/use-products";
 
 export function FeaturedProductsSection() {
 
-        const { data: products = [], isLoading } = useProducts({ limit: 4 });
+    const { data: products = [], isLoading } = useProducts({ limit: 4 });
         
     return (
         <Section className="">

@@ -8,14 +8,12 @@ type Props = {
     orders: Order[];
 };
 
-export function OrdersList({ orders }: Props) {
-
-    const safeOrders = Array.isArray(orders) ? orders : [];
+export function OrdersList({ orders = [] }: Props) {
 
     return (
         <div className="space-y-4">
 
-            {safeOrders.map((order) => (
+            {orders.map((order) => (
                 <OrderCard
                     key={order.id}
                     order={order}
