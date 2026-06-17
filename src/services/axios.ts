@@ -14,69 +14,62 @@ export const axiosInstance = axios.create({
     },
 });
 
-let isRefreshing = false;
+let refreshTokenPromise: Promise<string> | null = null;
 
-axiosInstance.interceptors.request.use(
-    (config) => {
-
-        const token = getAccessToken();
-
-        if (token) {
-
-            config.headers.Authorization = `Bearer ${token}`;
-
-        }
-
-        return config;
-
+const setAuthToken = (config: any) => {
+    const token = getAccessToken();
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
     }
-);
+    return config;
+};
+
+axiosInstance.interceptors.request.use(setAuthToken);
 
 axiosInstance.interceptors.response.use(
     (response) => response,
 
     async (error) => {
-
         const originalRequest = error.config;
 
         if (error.response?.status === 401 && !originalRequest._retry) {
-
             originalRequest._retry = true;
 
             try {
+                const refreshToken = getRefreshToken();
 
-                if (!isRefreshing) {
-
-                    isRefreshing = true;
-
-                    const refreshToken = getRefreshToken();
-
-                    if (!refreshToken) {
-
-                        removeTokens();
-
-                        return Promise.reject(error);
-                    }
-                    
-                    const tokens = await authService.refreshToken(refreshToken);
-
-                    updateAccessToken(tokens.accessToken);
-
-                    isRefreshing = false;
+                if (!refreshToken) {
+                    removeTokens();
+                    return Promise.reject(error);
                 }
 
-                originalRequest.headers.Authorization = `Bearer ${getAccessToken()}`;
+                // اگر پہلے سے refresh ہو رہا ہے تو انتظار کریں
+                if (!refreshTokenPromise) {
+                    refreshTokenPromise = authService
+                        .refreshToken(refreshToken)
+                        .then((tokens) => {
+                            updateAccessToken(tokens.accessToken);
+                            return tokens.accessToken;
+                        })
+                        .catch((err) => {
+                            removeTokens();
+                            throw err;
+                        })
+                        .finally(() => {
+                            refreshTokenPromise = null;
+                        });
+                }
+
+                const newToken = await refreshTokenPromise;
+                originalRequest.headers.Authorization = `Bearer ${newToken}`;
 
                 return axiosInstance(originalRequest);
             } catch {
-
                 removeTokens();
-
-                isRefreshing = false;
-
                 return Promise.reject(error);
             }
         }
+
         return Promise.reject(error);
     }
 );
