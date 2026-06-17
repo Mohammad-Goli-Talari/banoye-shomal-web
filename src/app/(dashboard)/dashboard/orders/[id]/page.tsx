@@ -1,4 +1,4 @@
-// src/app/(dashboard)/dashboard/profile/orders/[id]/page.tsx
+// src/app/(dashboard)/dashboard/orders/[id]/page.tsx
 
 import { OrderDetailsPageContent } from "@/features/orders/components/order-details-page-content";
 

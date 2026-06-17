@@ -8,8 +8,7 @@ export const productsService = {
     async getProducts(
         params: ProductSearchParams
     ) {
-        const response =
-            await productsApi.getProducts(params);
+        const response = await productsApi.getProducts(params);
 
         return response.data;
     },
@@ -17,8 +16,7 @@ export const productsService = {
     async getProduct(
         slug: string
     ) {
-        const response =
-            await productsApi.getProduct(slug);
+        const response = await productsApi.getProduct(slug);
 
         return response.data;
     },

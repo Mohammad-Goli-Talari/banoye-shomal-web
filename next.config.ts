@@ -6,3 +6,6 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+module.exports = {
+  productionBrowserSourceMaps: true,
+}
