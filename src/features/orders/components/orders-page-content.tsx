@@ -9,7 +9,9 @@ import { OrdersList } from "./orders-list";
 import { OrdersEmpty } from "./orders-empty";
 
 export function OrdersPageContent() {
-    const { data: orders = [], isLoading } = useOrders();
+    const { data, isLoading } = useOrders();
+
+    const orders = Array.isArray(data) ? data : [];;
 
     if (isLoading) {
         return (
@@ -32,9 +34,7 @@ export function OrdersPageContent() {
                 سفارش‌های من
             </h1>
 
-            <OrdersList
-                orders={orders}
-            />
+            <OrdersList orders={orders} />
 
         </div>
     );

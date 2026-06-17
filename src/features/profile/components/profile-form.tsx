@@ -9,13 +9,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { UseProfile } from "../hooks/use-profile";
+import { useProfile } from "../hooks/use-profile";
 import { useUpdateProfile } from "../hooks/use-update-profile";
 
 import { profileSchema , ProfileSchema } from "../schemas/profile-schema";
 
 export function ProfileForm() {
-    const { data } = UseProfile();
+    const { data } = useProfile();
 
     const updateProfileMutation = useUpdateProfile();
 

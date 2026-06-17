@@ -1,19 +1,16 @@
-// src/features/profile/services/profile-service.ts
-
 import { profileApi } from "../api/profile-api";
 
-import { Profile } from "../types/profile";
-
 export const profileService = {
-    async gerProfile(): Promise<Profile> {
-        const response = await profileApi.getProfile();
 
-        return response.data;
+    getProfile() {
+        return profileApi.getProfile();
     },
 
-    async updateProfile(data: Partial<Profile>): Promise<Profile> {
-            const response = await profileApi.updateProfile(data);
+    updateProfile(data: Parameters<typeof profileApi.updateProfile>[0]) {
+        return profileApi.updateProfile(data);
+    },
 
-            return response.data;
+    changePassword(data: Parameters<typeof profileApi.changePassword>[0]) {
+        return profileApi.changePassword(data);
     },
 };

@@ -1,15 +1,43 @@
 import { axiosInstance } from "@/services/axios";
 
-import { Profile } from "../types/profile";
+import {
+    Profile,
+    UpdateProfileRequest,
+    ChangePasswordRequest,
+} from "../types/profile";
 
 export const profileApi = {
-    getProfile() {
-        return axiosInstance.get<Profile>("/profile");
+
+    async getProfile(): Promise<Profile> {
+
+        const response =
+            await axiosInstance.get<Profile>(
+                "/profile"
+            );
+
+        return response.data;
     },
 
-    updateProfile(
-        data: Partial<Profile>
+    async updateProfile(
+        data: UpdateProfileRequest
+    ): Promise<Profile> {
+
+        const response =
+            await axiosInstance.put<Profile>(
+                "/profile",
+                data
+            );
+
+        return response.data;
+    },
+
+    async changePassword(
+        data: ChangePasswordRequest
     ) {
-        return axiosInstance.patch<Profile>("/profile", data);
+
+        await axiosInstance.put(
+            "/profile/change-password",
+            data
+        );
     },
 };

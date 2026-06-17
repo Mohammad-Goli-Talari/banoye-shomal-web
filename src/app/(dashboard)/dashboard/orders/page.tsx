@@ -1,14 +1,7 @@
 // src/app/(dashboard)/dashboard/orders/page.tsx
 
-import { OrdersList } from "@/features/orders/components/orders-list";
+import { OrdersPageContent  } from "@/features/orders/components/orders-page-content";
 
 export default function OrdersPage() {
-    return (
-        <div className="space-y-6">
-            <h1>سفارش های من</h1>
-
-            <OrdersList />
-
-        </div>
-    );
+    return <OrdersPageContent />;
 }

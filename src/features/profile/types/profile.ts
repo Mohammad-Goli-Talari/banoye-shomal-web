@@ -1,5 +1,3 @@
-// src/features/profile/types/profile.ts
-
 export type Profile = {
     id: string;
 
@@ -10,4 +8,18 @@ export type Profile = {
     phone: string;
 
     email?: string;
+};
+
+export type UpdateProfileRequest = {
+    firstName: string;
+
+    lastName: string;
+
+    email?: string;
+};
+
+export type ChangePasswordRequest = {
+    currentPassword: string;
+
+    newPassword: string;
 };
