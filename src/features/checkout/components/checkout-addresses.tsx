@@ -15,11 +15,11 @@ type Props = {
 };
 
 export function CheckoutAddresses({
-    addresses,
+    addresses = [],
     selectedAddressId,
     onSelect,
 }: Props) {
-    if (!addresses.length) {
+    if (!addresses?.length) {
         return (
             <p>
                 هیچ آدرسی ثبت نشده است.

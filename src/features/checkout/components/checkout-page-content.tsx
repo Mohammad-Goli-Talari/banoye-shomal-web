@@ -32,10 +32,10 @@ export function CheckoutPageContent() {
     const createOrderMutation = useCreateOrder();
 
     const cartItems = useAppSelector(
-        (state) => state.cart.items
+        (state) => state.cart?.items ?? []
     );
 
-    const itemsPrice = cartItems.reduce(
+    const itemsPrice = (cartItems ?? []).reduce(
         (total, item) => total + item.price * item.quantity, 0
     );
 

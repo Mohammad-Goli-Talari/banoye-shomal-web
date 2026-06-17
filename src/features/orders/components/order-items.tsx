@@ -8,7 +8,20 @@ type Props = {
     items: OrderItem[];
 };
 
-export function OrderItems({ items }: Props) {
+export function OrderItems({ items = [] }: Props) {
+
+    if (!items?.length) {
+        return (
+            <div className="space-y-4">
+                <h2 className="text-2xl font-bold">
+                    محصولات سفارش
+                </h2>
+                <p>
+                    هیچ محصولی ثبت نشده است.
+                </p>
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-4">

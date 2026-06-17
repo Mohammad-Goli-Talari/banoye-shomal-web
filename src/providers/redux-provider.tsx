@@ -17,7 +17,7 @@ export function ReduxProvider({ children }: Props) {
         <Provider store={store}>
 
             <PersistGate
-                loading={null}
+                loading={<div />}
                 persistor={persistor}
             >
                 {children}
