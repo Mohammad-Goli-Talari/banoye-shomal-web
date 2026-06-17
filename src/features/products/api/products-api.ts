@@ -6,19 +6,12 @@ import { Product } from "../types/product";
 
 import { ProductSearchParams } from "../types/product-search";
 
-const mockProducts = [
-    {
-        id: "1",
-        title: "محصول تست",
-        slug: "test",
-        price: 100000,
-        image: "/test.jpg",
-    },
-];
-
 export const productsApi = {
-    getProducts() {
-        return { data: mockProducts };
+    getProducts(params: ProductSearchParams) {
+        return axiosInstance.get<Product[]>(
+            "/products",
+            { params }
+        );
     },
 
     getProduct(slug: string) {
