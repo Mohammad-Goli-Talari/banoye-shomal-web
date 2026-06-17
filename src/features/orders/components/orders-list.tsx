@@ -4,10 +4,12 @@ import { Order } from "../types/order";
 
 import { OrderCard } from "./order-card";
 
+// orders: Order[];
 type Props = {
     orders?: Order[];
 };
 
+// { orders }
 export function OrdersList({ orders = [] }: Props) {
 
     return (
